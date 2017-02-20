@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<html>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js">
+</script>
+<body>
+
+<h1>ToDo</h1>
+<div ng-app="myApp" ng-controller="myCtrl">
+<input type="text" ng-model="newTodo" >
+
+
+<button ng-click="addtodo()">Go
+
+
+</button>
+
+<ul>
+ <li ng-repeat="todo in todos"><input type="checkbox" ng-model="todo.done"/>{{todo.title}}
+ </li>
+ 
+ 
+<button ng-click="clearDone()">Clear Done
+
+
+</button>
+ 
+</div>
+
+<script>
+var app = angular.module('myApp',[]);
+app.controller('myCtrl',function($scope){
+
+
+	
+	$scope.todos = [
+      {'title':'Build a todo app','done':false}
+	  ];
+	  
+	  $scope.addtodo = function(){
+	    $scope.todos.push({'title':$scope.newTodo,'done':false});
+	  }
+	  
+	  $scope.clearDone = function(){
+	     $scope.todos.forEach(function(todo,index){
+		  if(todo.done){
+		 $scope.todos.splice(index,1);
+	    }
+		 
+		 })
+	  
+	  }
+	  });
+</script>	  
